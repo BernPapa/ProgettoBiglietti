@@ -1,0 +1,15 @@
+connettiti al server dopo di che entra nel powershell
+entra nel database a_utente13
+show create table users;
+http://localhost:5000/api/auth/register
+registriamo con nome email password role
+dopo di che facciamo il login
+http://localhost:5000/api/auth/login 
+inserendo solo email e password
+e ti ridà il token e l'id 
+successivamente
+http://localhost:5000/api/events/create
+mettiamo nel headers Authorization con il valore del token
+e nel body creiamo levento inserendo
+title, description, date, location, available_tickets, organizer_id
+e cosi te creerà l'evento su cui vogliamo svolgere

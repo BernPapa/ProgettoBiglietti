@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registrazione</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2 id="formTitle">Login</h2>
+        <input type="text" id="name" placeholder="Nome" style="display: none;">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="submitForm()">Invia</button>
+        <p id="toggleForm" style="cursor:pointer; color:blue;" onclick="toggleForm()">Non hai un account? Registrati</p>
+    </div>
+
+    <script>
+        let isRegister = false;
+        function toggleForm() {
+            isRegister = !isRegister;
+            document.getElementById("formTitle").innerText = isRegister ? "Registrazione" : "Login";
+            document.getElementById("name").style.display = isRegister ? "block" : "none";
+            document.querySelector("button").innerText = isRegister ? "Registrati" : "Accedi";
+            document.getElementById("toggleForm").innerText = isRegister ? "Hai già un account? Accedi" : "Non hai un account? Registrati";
+        }
+
+        async function submitForm() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const url = isRegister ? "http://localhost:3000/auth/register" : "http://localhost:3000/auth/login";
+            const data = isRegister ? { name, email, password, role: "user" } : { email, password };
+            
+            const response = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+            
+            const result = await response.json();
+            alert(result.message || "Operazione completata!");
+        }
+    </script>
+</body>
+</html>
