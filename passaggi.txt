@@ -13,3 +13,6 @@ mettiamo nel headers Authorization con il valore del token
 e nel body creiamo levento inserendo
 title, description, date, location, available_tickets, organizer_id
 e cosi te creerà l'evento su cui vogliamo svolgere
+http://localhost:5000/api/bookingRoutes/
+viene utilizzato per prenotare un evento
+ed utilizza l'id dell'utente e l'id dell'evento
